@@ -192,7 +192,7 @@
         <% acts= doc.css('//div1') %>
         <% acts.each do |act| %>
             <% if Nokogiri::XML(act.to_s).css('head').first != nil %>
-            <div class="actDiv" id="Diva"><button class="acthead" id="current-act" data-cut="false" data-display="true"> <%= Nokogiri::XML(act.to_s).css('head').first.inner_text %></button><br></b>
+            <div class="actDiv" id="Diva"><span class="acthead" id="current-act" data-cut="false" data-display="true"> <%= Nokogiri::XML(act.to_s).css('head').first.inner_text %></span><br></b>
             <% end %>
             <script>
                 document.getElementById('current-act').id = '<%= escape_javascript "a" + currAct.to_s %>';
@@ -203,7 +203,7 @@
             <% currScene = 1 %>
             <% scenes.each do |scene| %>
                 <% if Nokogiri::XML(scene.to_s).css('head').first != nil %>
-                <div class="sceneDiv" id="Divs"><button class="scenehead" id="current-scene" data-cut="false" data-display="true"><%= Nokogiri::XML(scene.to_s).css('head').first.inner_text %></button><br>
+                <div class="sceneDiv" id="Divs"><span class="scenehead" id="current-scene" data-cut="false" data-display="true"><%= Nokogiri::XML(scene.to_s).css('head').first.inner_text %></span><br>
                 <% end %>
                 <script>
                     document.getElementById('current-scene').id = '<%= escape_javascript "s" + currIndex.to_s %>';
@@ -227,7 +227,7 @@
                         <% if (stageN < lineN) and (stageN >= lineN-1.0)%>
                             <!-- display stage direction -->
                             <br>
-                            <button class="stage" data-cut="false" data-display="true"> <%= stage.inner_text %> </button> <br>
+                            <span class="stage" data-cut="false" data-display="true"> <%= stage.inner_text %> </span> <br>
                             <% stages.delete(stage) %>
                         <% end %>
                     <% end %>
@@ -250,7 +250,7 @@
                             <!-- If there is a stage dir inside speech -->
                             <% if (stageN <= msN) and (stageN >= msN-1.0) %>
                             <!-- display stage direction -->
-                                <button class="stage" data-cut="false" data-display="true"> <%= stage.inner_text %> </button> <br>
+                                <span class="stage" data-cut="false" data-display="true"> <%= stage.inner_text %> </span> <br>
                                 <% stages.delete(stage) %>
                             <% end %>
                         <% end %>
@@ -273,10 +273,10 @@
                                 <% if word.attr('xml:id').to_s == id %>
                                 <!-- DISPLAY EACH WORD -->
                                 <% if (word.inner_text == ".") || (word.inner_text == ",") || (word.inner_text == "?") || (word.inner_text == "!") || (word.inner_text == ";") || (word.inner_text == ":") %>
-                                    <button class="punc" data-cut="false" data-display="true"><%= word.inner_text %></button>
+                                    <span class="punc" data-cut="false" data-display="true"><%= word.inner_text %></span>
                                 <% else %>
                                     <% if word.inner_text != "" && word.inner_text != " " %>
-                                        <button class="word" data-cut="false" data-display="true"><%= word.inner_text %></button>
+                                        <span class="word" data-cut="false" data-display="true"><%= word.inner_text %></span>
                                     <% end %>
                                 <% end %>
                             <% end %>
@@ -293,7 +293,7 @@
                         <!-- If there is a stage dir inside speech -->
                         <% if (stageN >= msN) and (stageN < msN+1.0) %>
                             <!-- display stage direction -->
-                            <button class="stage" data-cut="false" data-display="true"> <%= stage.inner_text %> </button> <br>
+                            <span class="stage" data-cut="false" data-display="true"> <%= stage.inner_text %> </span> <br>
                             <% stages.delete(stage) %>
                         <% end %>
                     <% end %>
@@ -303,7 +303,7 @@
                 
                 <br>
                 <% stages.each do |stage| %>
-                    <button class="stage" data-cut="false" data-display="true"><%= stage.inner_text %></button> <br>
+                    <span class="stage" data-cut="false" data-display="true"><%= stage.inner_text %></span> <br>
                     <% stages.delete(stage) %>
                 <% end %>
             <% end%>
