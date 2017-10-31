@@ -125,6 +125,48 @@
             <!-- This button shows the play's analytics -->
             <button class="nav-analytics" id="analytics-button">ANALYTICS</button>
 
+            <!-- This button toggles the strikethrough edits' visibility -->
+            <button class = "nav-synopsis" curState = "showing" id="viewToggle-button"> Hide Edits </button>
+
+            <script>
+                var toggleBtn = document.getElementById("viewToggle-button");
+                toggleBtn.curState = "showing";
+                toggleBtn.onclick = function() {
+                    var words = Array.from(document.getElementsByClassName("word"));
+                    var punctuation = Array.from(document.getElementsByClassName("punc"));
+                    var directions = Array.from(document.getElementsByClassName("stage"));
+                    var cuttableScript = words.concat(punctuation).concat(directions);
+                    cuttableScript.forEach(function(word) {
+                        if (toggleBtn.curState == "showing" && word.dataset.cut == "true") // User wishes to hide edit
+                        {
+                            word.style.display = 'none'
+                        }
+                        else //user wishes to show edits
+                        {
+                            word.style.display = 'initial'
+                        }
+
+                    })
+                    //Change button text from Show to Hide or vice versa 
+                    if (toggleBtn.curState == "hiding")  //wish to show edits
+                    {
+                        toggleBtn.curState = "showing"
+                        toggleBtn.innerHTML = "Hide Edits"
+                    } 
+                    else if (toggleBtn.curState == "showing")    //wish to hide edits 
+                    {
+                        toggleBtn.curState = "hiding"
+                        toggleBtn.innerHTML = "Show Edits"
+                    }
+                    else 
+                    {
+
+                        throw new Error('Something is fucked up with the toggle button curState')
+                    }
+                }
+             </script>
+             <div class = "break"> </div>
+
             <!-- Create a button for each act and scene in the play -->
             <% currAct = 1 %>
             <% currScene = 1 %>
@@ -321,40 +363,42 @@
 
         down = false
         toCut = false
+        parent = null
         // all words will need to be printed within the div class "script-main"
 
-        function mouseDown(e) {
-            if (e.srcElement.className == "word" || e.srcElement.className == "punc" ||
-                e.srcElement.className == "stage") {
-                    startIndex = lowIndex = highIndex = Array.from(e.srcElement.parentNode.children)
-                                                             .indexOf(e.srcElement)
+        function mouseDown({ srcElement }) {
+            if (srcElement.className == "word" || srcElement.className == "punc" ||
+                srcElement.className == "stage") {
+                    parent = srcElement.parentNode
+                    startIndex = lowIndex = highIndex = Array.from(parent.children)
+                                                             .indexOf(srcElement)
                     down = true
-                    toCut = !(e.srcElement.dataset.cut.to_b)
+                    toCut = !(srcElement.dataset.cut.to_b)
             }
         }
 
-        function mouseOver(e) {
+        function mouseOver({ srcElement }) {
             if (down) {
                 // Clear previous highlighting
-                Array.from(e.srcElement.parentNode.children).slice(lowIndex, highIndex + 1).forEach(
+                Array.from(parent.children).slice(lowIndex, highIndex + 1).forEach(
                     function(element) {
                         element.style.backgroundColor = "#FFFFFF"
                     }
                 )
                 // Update selection
-                if (e.srcElement.className == "word" || e.srcElement.className == "punc" ||
-                    e.srcElement.className == "stage") {
-                        newIndex = Array.from(e.srcElement.parentNode.children).indexOf(e.srcElement)
+                if (srcElement.className == "word" || srcElement.className == "punc" ||
+                    srcElement.className == "stage") {
+                        newIndex = Array.from(parent.children).indexOf(srcElement)
                         lowIndex = newIndex > startIndex ? startIndex : newIndex
                         highIndex = newIndex > startIndex ? newIndex : startIndex
                 }
                 // Highlight and decide on cutting or uncutting
                 toCut = false
-                Array.from(e.srcElement.parentNode.children).slice(lowIndex, highIndex + 1).forEach(
+                Array.from(parent.children).slice(lowIndex, highIndex + 1).forEach(
                     function(element) {
                         if (element.className == "word" || element.className == "punc" ||
                             element.className == "stage"){
-                                element.style.backgroundColor = "#0090FF";
+                                element.style.backgroundColor = "#B8D7FB";
                                 if (element.dataset.cut == "false") {
                                     toCut = true
                                 }
@@ -364,18 +408,17 @@
             }
         }
 
-        function mouseUp(e) {
+        function mouseUp({ srcElement }) {
             if (lowIndex == highIndex) {
-                e.srcElement.dataset.cut == "true" ? uncut(e.srcElement) : cut(e.srcElement)
+                srcElement.dataset.cut == "true" ? uncut(srcElement) : cut(srcElement)
             } else {
-                Array.from(e.srcElement.parentNode.children).slice(lowIndex, highIndex + 1).forEach(
+                Array.from(parent.children).slice(lowIndex, highIndex + 1).forEach(
                     function(element){
-                        element.style.backgroundColor = '#FFFFFF'
                         toCut ? cut(element) : uncut(element)
                     }
                 )
             }
-            newIndex = lowIndex = highIndex = startIndex = null
+            newIndex = lowIndex = highIndex = startIndex = parent = null
             down = toCut = false
         }
 
@@ -385,6 +428,7 @@
                     element.style.color = "#D3D3D3"
                     element.style.textDecoration = "line-through"
                     element.dataset.cut = "true"
+                    element.style.backgroundColor = '#FFFFFF'
             }
         }
 
@@ -394,6 +438,7 @@
                     element.style.color = "#000000"
                     element.style.textDecoration = "none"
                     element.dataset.cut = "false"
+                    element.style.backgroundColor = '#FFFFFF'
             }
         }
 

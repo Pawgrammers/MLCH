@@ -21,9 +21,9 @@ div.stage {
 
 p.lineNum {
     padding: 0px;
-    margin-right: 10px;
+    margin: 0 10px 0 0;
     font-size: 14px;
-    display: inline;
+    position: absolute;
     color: gray;
     font-family: serif;
 }
@@ -92,6 +92,7 @@ div.script-main {
     bottom: 0;
     right: 15%;
     z-index:0;
+    text-align: left;
 }
 
 #title {
@@ -113,6 +114,8 @@ button:focus {outline:0;}
     margin-left: -5px;
     border:none; 
     font-size: 14px;
+    position: relative;
+    left: 30px;
 }
 
 .word {
@@ -122,6 +125,8 @@ button:focus {outline:0;}
     margin: 0px;
     border:none;
     font-size: 14px;
+    position: relative;
+    left: 30px;
 }
 
 .stage {
@@ -132,6 +137,8 @@ button:focus {outline:0;}
      border:none;
      padding:0!important;
      font-size: 14px;
+     position: relative;
+     left: 30px;
 }
 
 .acthead {
@@ -195,6 +202,15 @@ button.nav-synopsis, button.nav-analytics {
     width: 100%;
 }
 
+div.break {
+    height: 5px;
+    text-align: center;
+    background-color: #aaaaaa;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #aaaaaa;
+    width: 98%;
+}
 button.nav-analytics {
     height: 40px;
     text-align: center;
