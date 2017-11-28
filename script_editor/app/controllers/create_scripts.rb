@@ -92,7 +92,7 @@ def createScript(title, flag)
                 spwords = Nokogiri::XML(line.to_s).css('w','c','pc')
 
                 # DISPLAY SPEAKER
-                speakerstring = '<br><p class="speaker">' + speaker.inner_text + '</p><br>'
+                speakerstring = '<br><button class="speaker">' + speaker.inner_text + '</button><br>'
                 htmlstring << speakerstring
 
                 # DISPLAY LINES
