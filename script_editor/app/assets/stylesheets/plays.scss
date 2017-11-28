@@ -75,6 +75,24 @@ br {
     display: inline-block;
 }
 
+table {
+    width: 100%;
+    border-collapse: collapse;
+
+    tr {
+        border-bottom:1pt solid black;
+        
+        td {
+            width: 20%;
+        }
+        
+        td.left-cell {
+            text-align: left;
+            max-width: 30%;
+        }
+    }
+}
+
 /////////////////////////////////
 // For script's page sections
 /////////////////////////////////
