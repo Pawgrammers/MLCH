@@ -451,8 +451,9 @@
 
                                         <%  # display stage direction  %>
                                         <%  # add a special class marker to this direction showing it is inside a speech.
-                                            #this enables the direction to be cut when a whole speech is cut by clicking on the 
-                                            #character name %>
+                                          #this enables the direction to be cut when a whole speech is cut by clicking on the 
+                                          #character name 
+                                        %>
                                         <button class="stage inside" data-cut="false" data-display="true">
                                             <%= stage.inner_text %>
                                         </button>
@@ -508,8 +509,9 @@
                                     <% if (stageN >= msN) and (stageN < msN+1.0) %>
                                         <%  # display stage direction %>
                                         <%  # add a special class marker to this direction showing it is inside a speech.
-                                            #this enables the direction to be cut when a whole speech is cut by clicking on the 
-                                            #character name %>
+                                          #this enables the direction to be cut when a whole speech is cut by clicking on the 
+                                          #character name 
+                                        %>
                                         <button class="stage inside" data-cut="false" data-display="true">
                                             <%= stage.inner_text %>
                                         </button>
@@ -517,6 +519,7 @@
                                         <% stages.delete(stage) %>
                                     <% end %>
                                 <% end %>
+                            <% end %>
                             <% end %>
                             <br>
                             <% stages.each do |stage| %>
@@ -531,7 +534,6 @@
                     <br>
                 <%end%>
             </div>
-        <%end%>
     </div>
 
     <script>
