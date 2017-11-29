@@ -621,12 +621,33 @@
                     }
                 )
             }
+            console.log("line 624")
+
+            if (srcElement.className != "speaker"){
+                console.log("line 627")
+                result = prevSpeaker(srcElement, lowIndex)
+                prevSpeak = result[0]
+                anyUncut = result[1]
+                nextSpeak = nextSpeaker(srcElement, lowIndex)
+                console.log("line 632")
+                Array.from(parent.children).slice(lowIndex, nextSpeak).forEach(function(element){
+                    if (element.dataset.cut == "false"){
+                        anyUncut = true
+                    }
+                })
+                console.log("line 638")
+                speakerCut = true
+                anyUncut ? uncut(prevSpeak) : cut(prevSpeak)
+                console.log("line 641")
+            }
+
             newIndex = lowIndex = highIndex = startIndex = parent = null
             down = toCut = false
         }
 
         //next 2 functions actually change the styling of the items
         function cut(element) {
+            console.log("IN CUT")
             if (element.className == "word" || element.className == "punc" ||
                 element.className.indexOf("stage") !== -1 || (element.className == "speaker" && speakerCut == true)) {
                     element.style.color = "#D3D3D3"
@@ -638,6 +659,7 @@
         }
 
         function uncut(element) {
+            console.log("IN UNCUT ")
             if (element.className == "word" || element.className == "punc" ||
                 element.className.indexOf("stage") !== -1 || (element.className == "speaker" && speakerCut == true)) {
                     element.style.color = "#000000"
@@ -657,6 +679,25 @@
                 }
             }  
             return items.length - 1 + startIndex //if we hit the very end of the play
+        }
+
+        //finds previous speaker and checks if any items up to that speaker are uncut
+        //returns array of previous speaker and bool 
+        function prevSpeaker(srcElement, startIndex) {
+            items = Array.from(srcElement.parentNode.children)
+            console.log("looping through items")
+            anyThingUncut = false
+            for (i = startIndex; i > 0; i--){
+                console.log("current item:")
+                console.log(items[i])
+                if (items[i].className == "speaker") {
+                    console.log("found a match!")
+                    return [items[i], anyThingUncut];
+                }
+                if (items[i].dataset.cut == "false"){
+                    anyThingUncut = true
+                }
+            }
         }
 
         // NOT CURRENTLY USED, LEFT FOR FUTURE INFO
