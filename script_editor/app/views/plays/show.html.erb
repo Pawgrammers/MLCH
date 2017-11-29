@@ -843,15 +843,25 @@
             formatAnalytics(analytics);
         }
 
-        formatAnalytics = function(analytics) {
+        formatAnalytics = function({lines, uncutLines, characterLines}) {
+            originalLines = lines.size
+            conciseLines = uncutLines.size
+
             // setup
-            innerHTML = `<p class="analytic"><span class="original">Original</span><span class="concise">Concise</span></p>`;
+            innerHTML = `<table><tr><th/><th>Original</th><th>Deleted</th><th>Concise</th></tr>`
+
             // total lines
-            innerHTML += `<p class="analytic"><span class="original">Lines: ${analytics.lines.size}</span><span class="concise">Concise Lines: ${analytics.uncutLines.size}</span></p>`
+            innerHTML += `<tr><td class="left-cell">Total Lines</td><td>${originalLines}</td><td>${originalLines - conciseLines}</td><td>${conciseLines}</td></tr>`
+
             // character lines
-            for (character in analytics.characterLines) {
-                innerHTML += `<p class="analytic"><span class="original">${character}: ${characterLines[character].total.size}</span><span class="concise">${character}: ${characterLines[character].uncut.size}</span></p>`
+            for (character in characterLines) {
+                originalCharLines = characterLines[character].total.size
+                conciseCharLines = characterLines[character].uncut.size
+                
+                innerHTML += `<tr><td class="left-cell">${character}:</td><td>${originalCharLines}</td><td>${originalCharLines - conciseCharLines}</td><td>${conciseCharLines}</td></tr>`
             }
+
+            innerHTML += `</table>`
             document.getElementById('hidden-analytics').innerHTML = innerHTML;
         }
 
