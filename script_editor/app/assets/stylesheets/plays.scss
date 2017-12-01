@@ -390,13 +390,13 @@ sp { background-color: #84EBF0; display: block; }
 
 milestone{ display: block; }
 
-// I don't know why this doesn't work for Act and Scene headers... 
+ 
 head {
-	display: block;
-	font-size: 28px;
-	padding-top: 30px;
-	padding-bottom: 30px;
-	font-weight: bold;
+    display: block;
+    font-size: 28px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    font-weight: bold;
 }
 
 stage { font-style: italic; display: block; background-color: pink;}

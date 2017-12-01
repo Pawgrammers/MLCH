@@ -1,73 +1,42 @@
 require 'nokogiri'
+require_relative 'create_scripts'
 
 class PlaysController < ApplicationController
+  
+  # POST /plays
+  def save
+    # Save edited script to HTML file
+    @data = params[:savedocument]
+    @doctitle = params[:savetitle]
+    @string = "edited_" + @doctitle + ".html"
+    File.open(@string, "w") {|f| f.write(@data)}
+
+  end
+
   def show
+
+    # A dictionary that pairs all play names with their Folger's acronyms
+    plays = {"a_midsummer_nights_dream"=>"MND", 'alls_well_that_ends_well'=>"AWW", 'antony_and_cleopatra'=>"Ant", 'as_you_like_it'=>"AYL", 'coriolanus'=>"Cor", 'cymbeline'=>"Cym", 
+        'hamlet'=>"Ham", 'henry_iv_part_1'=>"1H4", 'henry_iv_part_2'=>"2H4", 'henry_v'=>"H5", 'henry_vi_part_1'=>"1H6", 'henry_vi_part_2'=>"2H6",
+        'henry_vi_part_3'=>"3H6", 'henry_viii'=>"H8", 'julius_caesar'=>"JC",  'king_john'=>"Jn", 'king_lear'=>"Lr", 'loves_labors_lost'=>"LLL",
+        'macbeth'=>"Mac", 'measure_for_measure'=>"MM", 'much_ado_about_nothing'=>"Ado", 'othello'=>"Oth", 'pericles'=>"Per", 'richard_ii'=>"R2", 'richard_iii'=>"R3", 
+        'romeo_and_juliet'=>"Rom", 'taming_of_the_shrew'=>"Shr", 'the_comedy_of_errors'=>"Err", 'the_merchant_of_venice'=>"MV", 'the_merry_wives_of_windsor'=>"Wiv",
+        'the_tempest'=>"Tmp", 'the_two_gentlemen_of_verona'=>"TGV", 'the_two_noble_kinsmen'=>"TNK", 'the_winters_tale'=>"WT",
+        'timon_of_athens'=>"Tim", 'titus_andronicus'=>"Tit", 'troilus_and_cressida'=>"Tro", 'twelfth_night'=>"TN", 'venus_and_adonis'=>"Ven" }
     
-    # These variables will change as we parse through the play
-    #theSynopsis = doc.css('//div[type="synopsis"]').text
-    #currentPlay = doc.css('//titleStmt/title').inner_text
-    #currentLine = "default"
-    #currentWord = "default"
-    #wordId = "default"
-    #currentSpeaker = "default"
-    #speakerNameHasTwoWords = false
-    #wordIsSpeaker = false
-    #oneMoreAct = false
-    #oneMoreScene = false
+    @doctitle = params[:play]   
+    @string = "edited_" + @doctitle + ".html"
+    @acronym = plays[@doctitle]
 
-    # Add the title to the top of the page
-    #title = Nokogiri::XML::Node.new "p", htmldoc
-    #title['id'] = 'title'
-    #title.content = currentPlay
-    #titleP.add_next_sibling(title)
-
-    # Add the synopsis text but hide it
-    #hidden = Nokogiri::XML::Node.new "div", htmldoc
-    #hidden['class'] = 'hidden-synopsis'
-    #hidden.content = theSynopsis
-    #navP.add_next_sibling(hidden)
-
-    # Add a tab for synopsis in navigation bar
-    #synopsis = Nokogiri::XML::Node.new "button", htmldoc
-    #synopsis['class'] = 'nav-synopsis'
-    #synopsis.content = "SYNOPSIS"
-    #synopsis.parent = div
-    #currentDiv = synopsis
-
-    # Loop through all of the words in the play
-  	#doc.css('w').each do |node|
-  		#children = node.children
-
-      #currentLine = node['n']
-      #wordId = node['xml:id']
-      #currentWord = children.inner_text
-
-      # This loops checks if the word is a speaker and updates currentSpeaker
-  		#if (currentWord == currentWord.upcase)
-  			#if (currentWord.length > 2 and not(currentWord == "ACT") and not(currentWord == "EPILOGUE"))
-  				#if (speakerNameHasTwoWords)
-            #currentSpeaker += " " + currentWord
-            #speakerNameHasTwoWords = false
-          #elsif (currentWord == "FIRST" or currentWord == "SECOND" or currentWord == "THIRD")
-            #currentSpeaker = currentWord
-            #speakerNameHasTwoWords = true
-          #else 
-            #currentSpeaker = currentWord
-          #end
-          #wordIsSpeaker = true
-        #else
-          #wordIsSpeaker = false
-  			#end
-      #else
-        #wordIsSpeaker = false
-      #end
-
-    
-
-
-
-  	#end	
-    #puts htmldoc
-    #File.write("app/views/plays/show.html.erb", htmldoc)
+    # If a file exists, load it
+    if File.exists?(@string)
+      @provideddocument = File.open(@string, "r")
+      @provideddocument = File.read(@string)
+      
+    # If none exists, create a new one by parsing the XML
+    else 
+      @provideddocument = createScript(@acronym, false) 
+      File.open(@string, "w") {|f| f.write(@provideddocument)}
+    end
   end
 end
