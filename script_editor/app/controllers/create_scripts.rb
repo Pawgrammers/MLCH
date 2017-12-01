@@ -129,7 +129,6 @@ def createScript(title, flag)
                         spwords.each do |word|
                             if word.attr('xml:id').to_s == id
                             # DISPLAY EACH WORD
-                            puts (lineNum)
                                 if (word.inner_text == ".") || (word.inner_text == ",") || (word.inner_text == "?") || (word.inner_text == "!") || (word.inner_text == ";") || (word.inner_text == ":")
                                     wordstring = '<button class="punc" data-cut="false" data-display="true" data-lineNum='+lineNum.to_s + '>' + word.inner_text + '</button> '
                                     htmlstring << wordstring
