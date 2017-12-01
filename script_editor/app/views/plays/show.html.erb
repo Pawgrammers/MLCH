@@ -425,16 +425,8 @@
             var allScenes = document.getElementsByClassName("scenehead");
             for (var i = 0; i < allScenes.length; i++) {
                 if (("n" + allScenes[i].id) == scene.target.id) {
-                    allScenes[i].style.backgroundColor = "yellow";
                     window.location.hash = allScenes[i].id;
                 }
-                else {
-                    allScenes[i].style.backgroundColor = "transparent";
-                }
-            }
-            var allActs = document.getElementsByClassName("acthead");
-            for (var i = 0; i < allActs.length; i++) {
-                allActs[i].style.backgroundColor = "transparent";
             }
         }
         /** 
@@ -450,16 +442,8 @@
             var allActs = document.getElementsByClassName("acthead");
             for (var i = 0; i < allActs.length; i++) {
                 if (("n" + allActs[i].id) == act.target.id) {
-                    allActs[i].style.backgroundColor = "yellow";
                     window.location.hash = allActs[i].id;
                 }
-                else {
-                    allActs[i].style.backgroundColor = "transparent";
-                }
-            }
-            var allScenes = document.getElementsByClassName("scenehead");
-            for (var i = 0; i < allScenes.length; i++) {
-                allScenes[i].style.backgroundColor = "transparent";
             }
         }
         /** 
