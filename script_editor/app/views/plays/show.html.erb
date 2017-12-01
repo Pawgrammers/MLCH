@@ -49,8 +49,10 @@
                 HIDE EDITS
             </button>
 
+            <button class ="nav-analytics" id="clearall-button"> CLEAR EDITS </button>
+
             <!-- This button allows the user to save their edits -->
-            <button class = "nav-analytics" id="save-button"> SAVE </button>
+            <button class = "nav-synopsis" id="save-button"> SAVE </button>
 
 
             <!--
@@ -628,6 +630,28 @@
                 form.elements["savedocument"].value = fullScript
                 form.elements["savetitle"].value = playName
                 form.elements["saveButton"].click()
+            }
+        }
+
+        var clearBtn = document.getElementById("clearall-button")
+        clearBtn.onclick = function() {
+            console.log('clicked')
+            var result = confirm("Are you sure you want to delete all the edits you've made?");
+            if (result) { 
+                for (i = 1; i < 30; i++) {
+
+                    string = "s" + i.toString()
+                    src = document.getElementById(string)
+                    if (src != null) {
+                        parent = src.parentNode
+                        Array.from(parent.children).forEach(
+                            function(element){
+                                speakerCut = true
+                                uncut(element)
+                        }
+
+                    )}
+                }
             }
         }
     </script>
