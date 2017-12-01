@@ -332,7 +332,7 @@
                 // Clear previous highlighting
                 Array.from(parent.children).slice(lowIndex, highIndex + 1).forEach(
                     function(element) {
-                        element.style.backgroundColor = "#FFFFFF"
+                        element.style.backgroundColor = "#D6E4F3"
                     }
                 )
                 // Update selection
@@ -348,7 +348,7 @@
                     function(element) {
                         if (element.className == "word" || element.className == "punc" ||
                             element.className == "stage"){
-                                element.style.backgroundColor = "#B8D7FB";
+                                element.style.backgroundColor = "#7699c0";
                                 if (element.dataset.cut == "false") { //prioritize cutting over uncutting
                                     toCut = true
                                 }
@@ -377,10 +377,10 @@
         function cut(element) {
             if (element.className == "word" || element.className == "punc" ||
                 element.className.indexOf("stage") !== -1 || (element.className == "speaker" && speakerCut == true)) {
-                    element.style.color = "#D3D3D3"
+                    element.style.color = "#747474"
                     element.style.textDecoration = "line-through"
                     element.dataset.cut = "true"
-                    element.style.backgroundColor = '#FFFFFF'
+                    element.style.backgroundColor = '#D6E4F3'
                     speakerCut = false
             }
         }
@@ -390,7 +390,7 @@
                     element.style.color = "#000000"
                     element.style.textDecoration = "none"
                     element.dataset.cut = "false"
-                    element.style.backgroundColor = '#FFFFFF'
+                    element.style.backgroundColor = '#D6E4F3'
                     speakerCut = false
             }
         }
