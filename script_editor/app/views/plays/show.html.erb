@@ -1,9 +1,8 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <html><body>
+    <p id="notice"/>
 
-    <p id="notice"></p>
-    <!-- 
+     <!-- 
         Decide what XML file to open depending on the title acronym.
         doc variable now only used to obtain proper title and list of acts/scenes.
     -->
@@ -25,15 +24,13 @@
         <script>
             document.getElementById('title').innerHTML = '<%= escape_javascript title.inner_text %>';
         </script>
-
     </div>
 
 
     <% 
         #Parse the XML file for number of acts & scenes in order to 
-        #create the navigation bar, + toggle and save buttons
+        #create the navigation bar 
     %>
-
     <div class="script-side-bar">
         <div class="play-navigation">
 
@@ -46,7 +43,7 @@
             <button class="nav-analytics" id="analytics-button">
                 ANALYTICS
             </button>
-        
+
             <!-- This button toggles the strikethrough edits' visibility -->
             <button class = "nav-synopsis" curState = "showing" id="viewToggle-button">
                 HIDE EDITS
@@ -165,7 +162,9 @@
                             element.parentNode.children[prevBreak].style.display = 'initial'
                             element.parentNode.children[postBreak].style.display = 'initial'
                         }
+
                     })
+
                 }
                 //adjustLines alters the line numbers dynamically as the user cuts lines out of the play 
                 function adjustLines() {
@@ -211,24 +210,28 @@
              </script>
              <div class = "break"> </div>
 
-
             <% # Create a button for each act and scene in the play %>
-          
             <% currAct = 1 %>
             <% currScene = 1 %>
             <% currIndex = 1 %>
             <% acts= doc.css('//div1') %>
             <% acts.each do |act| %>
-
-                <button class="nav-act" id="<%= escape_javascript "na" + currAct.to_s %>"><%= "ACT " + currAct.to_s %></button>
-
+                <button class="nav-act" id="current-act">
+                    <%= "ACT " + currAct.to_s %>        
+                </button>
+                <script>
+                    document.getElementById('current-act').id = '<%= escape_javascript "na" + currAct.to_s %>';
+                </script>
                 <% currAct = currAct + 1 %>
                 <% currScene = 1 %>
                 <% scenes = Nokogiri::XML(act.to_s).css('//div2') %>
                 <% scenes.each do |scene| %>
-
-                    <button class="nav-scene" id="<%= escape_javascript "ns" + currIndex.to_s %>"><%= "SCENE " + currScene.to_s %></button>
-
+                    <button class="nav-scene" id="current-scene">
+                        <%= "SCENE " + currScene.to_s %>
+                    </button>
+                    <script>
+                        document.getElementById('current-scene').id = '<%= escape_javascript "ns" + currIndex.to_s %>';
+                    </script>
                     <% currScene = currScene + 1 %>
                     <% currIndex = currIndex + 1 %>
                 <% end%>
@@ -271,6 +274,7 @@
     </div>
 
 
+
     <!-- 
         Retrieve the saved HTML and fill out script-main 
     -->
@@ -287,7 +291,7 @@
         //create the event listeners for a user highlighting over text to be cut
         document.querySelector(".script-main").addEventListener("mousedown", mouseDown, false);
         document.querySelector(".script-main").addEventListener("mouseover", mouseOver, false);
-        document.querySelector(".script-main").addEventListener("mouseup", mouseUp, false);      
+        document.querySelector(".script-main").addEventListener("mouseup", mouseUp, false);
 
 
         down = false //represents if the mouse is down
@@ -295,7 +299,6 @@
         parent = null //represents the parent node of the cut items
         speakerCut = true //version of toCut for cutting whole speeches when a character name is clicked
 
-        // all words will need to be printed within the div class "script-main"
 
         //function which takes in the clicked element and if it is a cuttable item, records the parent element 
         //as well as the index of it's position as a child element
@@ -596,6 +599,7 @@
             }
         }  
     </script>
+
         <!-- Form for saved HTML -->
         <form action="/plays/save" method="post" id="saveForm">
             <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
@@ -628,6 +632,5 @@
     </script>
 
 
-    
 
 </body></html>
