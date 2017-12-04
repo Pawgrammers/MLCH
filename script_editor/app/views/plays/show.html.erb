@@ -391,7 +391,6 @@
 
         //next 2 functions actually change the styling of the items
         function cut(element) {
-            console.log("IN CUT")
             if (element.className == "word" || element.className == "punc" ||
                 element.className.indexOf("stage") !== -1 || (element.className == "speaker" && speakerCut == true)) {
                     element.style.color = "#D3D3D3"
@@ -402,7 +401,6 @@
             }
         }
         function uncut(element) {
-            console.log("IN UNCUT ")
             if (element.className == "word" || element.className == "punc" ||
                 element.className.indexOf("stage") !== -1 || (element.className == "speaker" && speakerCut == true)) {
                     element.style.color = "#000000"
