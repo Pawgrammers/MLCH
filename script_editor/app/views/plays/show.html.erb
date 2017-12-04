@@ -369,24 +369,20 @@
                     }
                 )
             }
-            console.log("line 624")
+            
 
             if (srcElement.className != "speaker"){
-                console.log("line 627")
                 result = prevSpeaker(srcElement, lowIndex)
                 prevSpeak = result[0]
                 anyUncut = result[1]
                 nextSpeak = nextSpeaker(srcElement, lowIndex)
-                console.log("line 632")
                 Array.from(parent.children).slice(lowIndex, nextSpeak).forEach(function(element){
                     if (element.dataset.cut == "false"){
                         anyUncut = true
                     }
                 })
-                console.log("line 638")
                 speakerCut = true
                 anyUncut ? uncut(prevSpeak) : cut(prevSpeak)
-                console.log("line 641")
             }
 
             newIndex = lowIndex = highIndex = startIndex = parent = null
@@ -432,13 +428,9 @@
         //returns array of previous speaker and bool 
         function prevSpeaker(srcElement, startIndex) {
             items = Array.from(srcElement.parentNode.children)
-            console.log("looping through items")
             anyThingUncut = false
             for (i = startIndex; i > 0; i--){
-                console.log("current item:")
-                console.log(items[i])
                 if (items[i].className == "speaker") {
-                    console.log("found a match!")
                     return [items[i], anyThingUncut];
                 }
                 if (items[i].dataset.cut == "false"){
