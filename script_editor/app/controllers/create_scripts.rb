@@ -13,10 +13,13 @@ def createAllScripts()
         ["Tmp", 'the_tempest'], ["TGV", 'the_two_gentlemen_of_verona'], ["TNK", 'the_two_noble_kinsmen'], ["WT", 'the_winters_tale'],
         ["Tim", 'timon_of_athens'], ["Tit", 'titus_andronicus'], ["Tro", 'troilus_and_cressida'], ["TN", 'twelfth_night'], ["Ven", 'venus_and_adonis']]
 
+    index = 1
     plays.each do |play|
         text = createScript(play[0], true)
         filename = '../../edited_' + play[1] + '.html'
         File.open(filename, "w") {|f| f.write(text)}
+        puts((index * 100 / plays.length).to_s + '% completed')
+        index = index + 1
     end 
 end
 
@@ -182,9 +185,11 @@ end
 
 
 # Parsing command line arguments, usage: ruby create_scripts.rb all
-all_flag = ARGV
+all_flag = ARGV[0]
 
 if all_flag == 'all'
-    print ('Creating all scripts')
+    puts ('Creating all scripts')
     createAllScripts()
 end
+
+
