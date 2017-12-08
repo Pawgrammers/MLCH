@@ -14,8 +14,10 @@ Prerequisites: install Ruby/Rails and git on your machine
 2. cd into the script_editor folder
 2. Install gems: Nokogiri, bootstrap,
     use the command `bundle install` in terminal to install gems
-3. Run the app: use the command `rails s` in terminal, then navigate to
-    localhost:3000 in your prefered browser
+    
+Gems
+
+1.Nokogiri - this gem is used to parse XML files into HTML files.
 
 ## Usage
 
@@ -23,7 +25,7 @@ To run the website on localhost:
 
 in terminal:
 
-`cd MLCH`
+`cd Shakespeare-Script-Editor`
 
 `cd script_editor`
 
@@ -54,11 +56,22 @@ localhost:3000
     Internal Play Navigation
     Synopsis
     
+12/8/2017: Version 2.0
+  
+  Implemented Features:
+    Cutting text by highlighting and clicking speaker names
+    Clear All Edits Button
+    Play Analytics Modal
+    Preprocessing XML scripts
+    Saving Edited Scripts
+    Toggle view with hidden and visible cut text
+    
 ## Credits
 
-Contributors: Mahlet Melaku, Holly Mitchell, Lee Norgaard, Crystal Xiang
+Contributors version 1.0: Mahlet Melaku, Holly Mitchell, Lee Norgaard, Crystal Xiang
+Contributors version 2.0: Jackson Crewe, Chloe Elliott, Blake Larkin, Montana Roberts
 
-Client: Prof. Benjamin Wiedermann
+Clients: Prof. Benjamin Wiedermann, Prof. Ambereen Dadabhoy
 
 CS121 Professor: Yekaterina Kharitonova
 
