@@ -2,6 +2,10 @@
 
 The Shakespeare Script Editor is a website made by team MLCH for CS121: Software Development in the Spring 2017 semester. The website allows users to choose a Shakespeare from a list or find one using a search bar, read the play, and cut words from the play. The script editor also analyzes each play, providing line numbers, a synopsis, and a navigation bar with the number of acts and scenes in the play.
 
+## Architecture
+This app is built using Ruby on Rails, Javascript, HTML, and CSS. 
+The backend consists of a ruby script that parses all the XML scripts into HTML files and plays_controller which responds to HTTP requests from the browser and serves the scripts. The frontend is mainly Show.hmtl.erb which renders the HTML properly and stores all the Javascript functions that create the page functionality and interactivity of the script.
+
 ## Installation
 
 Prerequisites: install Ruby/Rails and git on your machine
