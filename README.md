@@ -12,7 +12,6 @@
 4. [Functionality](#functionality)
    * [Use Cases](#use-case)
 5. [Known Problems](#known-problems)
-6. [Contributing](#contributing)
 
 ## Summary 
 The Shakespeare Script Editor is a website made by team Pawgrammers for CS121: Software Development in the Fall 2017 semester progressing upon work done by team MLCH completed in the Spring 2017 semester. Our web app provides a simple and easy way for directors and actors to
