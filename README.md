@@ -48,7 +48,14 @@ when necessary, shown below.
 
 ![Toggle Functionality Gif](https://user-images.githubusercontent.com/21372792/33815975-a8456974-ddea-11e7-83f1-4d4958cb182e.gif)
 
-9. Clear Edits: The user can clear all the edits they've made by clicking the 'Clear Edits' button in the side bar. The page will prompt them to confirm this and then return the play to it's original unedited state.
+9. Clear Edits: The user can clear all the edits they've made by clicking the 'Clear Edits' button in the side bar. The page will prompt them to confirm this and then return the play to it's original unedited state. This does not autosave. If you want this change to become permanent, you must click the save button after clearing the edits.
+
+## Tips and Tricks
+If you do not run the preprocessing command before using the app, it will take about 30 seconds the first time you open any play.
+The Analytics information provides the number of full lines that have been cut, meaning from the beginning of the line to the linebreak has to be cut for it to be counted in deleted lines.
+Saving is not automatic, and if you change something but do not press the save button, when you reopen the play or refresh the page, any changes will be lost. When you open a play, what will be shown is the last saved version.
+Clicking 'Clear Edits' does not autosave. If you want to save this change, you must click the save button after clicking clear edits.
+The toggle button takes about 5-10 seconds to work. Please DO NOT click it again while waiting. Simply count to 10 and you will see the change in view happen.
 
 ### Problem description
 Often when planning a play or preparing for a performance, directors and
@@ -184,12 +191,6 @@ When saving a play, all HTML in the script will be printed to the terminal. This
 In the play 'All's well that ends well', the character Parollus always has one deleted line. For some reason the translation of this line was unclear and so Folger's marked it as a missing or hidden line, and although there is nothing supposed to be said there, because of the way it is marked it is counted as a deleted line.
 The code has not been refactored and as such, there are several completely unused files and some of the logic in the Javascript functions is not clear or appropriately separated.
 
-
-## Tips and Tricks
-If you do not run the preprocessing command before using the app, it will take about 30 seconds the first time you open any play.
-The Analytics information provides the number of full lines that have been cut, meaning from the beginning of the line to the linebreak has to be cut for it to be counted in deleted lines.
-Saving is not automatic, and if you change something but do not press the save button, when you reopen the play or refresh the page, any changes will be lost. When you open a play, what will be shown is the last saved version.
-Clicking 'Clear Edits' does not autosave. If you want to save this change, you must click the save button after clicking clear edits.
 
 
 ## References 
