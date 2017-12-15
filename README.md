@@ -1,6 +1,9 @@
 # Shakespeare Script Editor
 ## Contents
 1. [Summary](#summary) 
+   * [Functionality](#functionality)
+   * [Tips and Tricks](#tips-and-tricks)
+   * [Use Case](#use-case)
    * [Problem description](#problem-description)
    * [Stakeholders](#stakeholders)
 2. [Architecture](#architecture)
@@ -9,13 +12,57 @@
    * [Minimum Viable Product](#minimum-viable-product)
    * [Architecture Model](#architecture-model)
 3. [Installation](#installation)
-4. [Functionality](#functionality)
-   * [Use Cases](#use-case)
-5. [Known Problems](#known-problems)
+4. [Known Problems](#known-problems)
 
 ## Summary 
 The Shakespeare Script Editor is a website made by team Pawgrammers for CS121: Software Development in the Fall 2017 semester progressing upon work done by team MLCH completed in the Spring 2017 semester. Our web app provides a simple and easy way for directors and actors to
 edit scripts and read plays. On the website, a user can choose between any of Shakespeare’s plays. Chosen plays are not only readable, but editable! Users can cut down the play word-by-word. After editing the play to their specifications, the website will provide relevant data and statistics too, such as the number of lines in the play and the number of lines for each individual character in a particular play.
+
+### Functionality
+
+This section outlines the total functionality of the app. 
+1. Viewing: The user will be able to see any Shakespeare play in readable,
+aesthetically-pleasing format.
+2. Navigation: The user will be able to navigate to any place in the script
+using a navigation bar on one side of the screen.
+
+![Navigating Play](https://user-images.githubusercontent.com/21328366/33822284-dad565da-de0b-11e7-9376-765faf6d088d.gif)
+
+3. Strikethrough: The user can cut through words and lines that they
+would like to remove from the play using highlighting or clicking on a speaker's name.
+
+![Cutting functionality](https://user-images.githubusercontent.com/21372792/33815748-b6737c72-dde8-11e7-80de-bbca75f0c62d.gif)
+
+4. Saving: The current state of the play can be saved by clicking the save button in the sidebar. From then on, when the play loads, the most recently saved version will be shown.
+5. Printing: The user van print their full, edited version of the
+play, with or without edits depending on the current toggle view mode.
+6. Analytics: The site calculates and displays information about each
+play, namely the original line number of each character, how many have been deleted, and lines remaining, shown below.
+
+![Analytics Image](https://user-images.githubusercontent.com/21372792/33813859-58cd7cc4-dddb-11e7-9cf7-c84d169c344c.png)
+
+7. Synopsis: The play synopsis can be accessed via the 'Synopsis' button in the sidebar.
+8. Full and Concise Versions: The user has the option of viewing
+either the full original version of the play, having cuts distinct but
+visible, and the concise version where cuts are removed to see context
+when necessary, shown below.
+
+![Toggle Functionality Gif](https://user-images.githubusercontent.com/21372792/33815975-a8456974-ddea-11e7-83f1-4d4958cb182e.gif)
+
+9. Clear Edits: The user can clear all the edits they've made by clicking the 'Clear Edits' button in the side bar. The page will prompt them to confirm this and then return the play to it's original unedited state. This does not autosave. If you want this change to become permanent, you must click the save button after clearing the edits.
+
+### Tips and Tricks
+If you do not run the preprocessing command before using the app, it will take about 30 seconds the first time you open any play.
+The Analytics information provides the number of full lines that have been cut, meaning from the beginning of the line to the linebreak has to be cut for it to be counted in deleted lines.
+Saving is not automatic, and if you change something but do not press the save button, when you reopen the play or refresh the page, any changes will be lost. When you open a play, what will be shown is the last saved version.
+Clicking 'Clear Edits' does not autosave. If you want to save this change, you must click the save button after clicking clear edits.
+The toggle button takes about 5-10 seconds to work. Please DO NOT click it again while waiting. Simply count to 10 and you will see the change in view happen.
+
+### Use Case 
+Figure 3 below outlines the use case of each page of the site.
+
+![Use Case Diagram](https://user-images.githubusercontent.com/21372792/33819054-2f368abe-ddfd-11e7-8862-918c87ab6d21.png)
+
 
 ### Problem description
 Often when planning a play or preparing for a performance, directors and
@@ -137,46 +184,15 @@ Step 3: Starting the app after installation
 5. Open your internet browser and go to `localhost:3000`
 6. To end the application, press `control + c` in your terminal and close the terminal
 
-## Functionality
-
-This section outlines the total functionality of the app. 
-1. Viewing: The user will be able to see any Shakespeare play in readable,
-aesthetically-pleasing format.
-2. Navigation: The user will be able to navigate to any place in the script
-using a navigation bar on one side of the screen.
-
-![Navigating Play](https://user-images.githubusercontent.com/21328366/33822284-dad565da-de0b-11e7-9376-765faf6d088d.gif)
-
-3. Strikethrough: The user can cut through words and lines that they
-would like to remove from the play using highlighting or clicking on a speaker's name.
-
-![Cutting functionality](https://user-images.githubusercontent.com/21372792/33815748-b6737c72-dde8-11e7-80de-bbca75f0c62d.gif)
-
-4. Saving: The current state of the play can be saved by clicking the save button in the sidebar. From then on, when the play loads, the most recently saved version will be shown.
-5. Printing: The user van print their full, edited version of the
-play, with or without edits depending on the current toggle view mode.
-6. Analytics: The site calculates and displays information about each
-play, namely the original line number of each character, how many have been deleted, and lines remaining, shown below.
-
-![Analytics Image](https://user-images.githubusercontent.com/21372792/33813859-58cd7cc4-dddb-11e7-9cf7-c84d169c344c.png)
-
-7. Synopsis: The play synopsis can be accessed via the 'Synopsis' button in the sidebar.
-8. Full and Concise Versions: The user has the option of viewing
-either the full original version of the play, having cuts distinct but
-visible, and the concise version where cuts are removed to see context
-when necessary, shown below.
-
-![Toggle Functionality Gif](https://user-images.githubusercontent.com/21372792/33815975-a8456974-ddea-11e7-83f1-4d4958cb182e.gif)
-
-9. Clear Edits: The user can clear all the edits they've made by clicking the 'Clear Edits' button in the side bar. The page will prompt them to confirm this and then return the play to it's original unedited state.
-
-### Use Case 
-Figure 3 below outlines the use case of each page of the site.
-
-![Use Case Diagram](https://user-images.githubusercontent.com/21372792/33819054-2f368abe-ddfd-11e7-8862-918c87ab6d21.png)
 
 ## Known Problems 
 If you cut out an entire speech by highlighting, the speaker's name will not automatically be cut out, and vice versa.
+Version 2 of the app only works in the Google Chrome browser.
+When saving a play, all HTML in the script will be printed to the terminal. This does not cause problems, but it does take a while to scroll up to previous instructions and may look a little strange.
+In the play 'All's well that ends well', the character Parollus always has one deleted line. For some reason the translation of this line was unclear and so Folger's marked it as a missing or hidden line, and although there is nothing supposed to be said there, because of the way it is marked it is counted as a deleted line.
+The code has not been refactored and as such, there are several completely unused files and some of the logic in the Javascript functions is not clear or appropriately separated.
+
+
 
 ## References 
 George Mason University. 2017. Open Source Shakespeare - Search Shakespeare’s
