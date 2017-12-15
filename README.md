@@ -18,7 +18,7 @@
 The Shakespeare Script Editor is a website made by team Pawgrammers for CS121: Software Development in the Fall 2017 semester progressing upon work done by team MLCH completed in the Spring 2017 semester. Our web app provides a simple and easy way for directors and actors to
 edit scripts and read plays. On the website, a user can choose between any of Shakespeare’s plays. Chosen plays are not only readable, but editable! Users can cut down the play word-by-word. After editing the play to their specifications, the website will provide relevant data and statistics too, such as the number of lines in the play and the number of lines for each individual character in a particular play.
 
-## Functionality
+### Functionality
 
 This section outlines the total functionality of the app. 
 1. Viewing: The user will be able to see any Shakespeare play in readable,
@@ -51,7 +51,7 @@ when necessary, shown below.
 
 9. Clear Edits: The user can clear all the edits they've made by clicking the 'Clear Edits' button in the side bar. The page will prompt them to confirm this and then return the play to it's original unedited state. This does not autosave. If you want this change to become permanent, you must click the save button after clearing the edits.
 
-## Tips and Tricks
+### Tips and Tricks
 If you do not run the preprocessing command before using the app, it will take about 30 seconds the first time you open any play.
 The Analytics information provides the number of full lines that have been cut, meaning from the beginning of the line to the linebreak has to be cut for it to be counted in deleted lines.
 Saving is not automatic, and if you change something but do not press the save button, when you reopen the play or refresh the page, any changes will be lost. When you open a play, what will be shown is the last saved version.
