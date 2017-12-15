@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   resources :edit_plays
   get "/plays/:play" => "plays#show"
 
+  post "/plays/save" => "plays#save"
+
   get 'home/homepage'
 
   root 'home#homepage'

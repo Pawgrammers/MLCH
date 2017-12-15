@@ -1,109 +1,24 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <html><body>
-    <p id="notice"></p>
+    <p id="notice"/>
 
-    <!-- 
-        Decide what XML file to open depending on the URL.
-        We did them one-by-one because the URL's didn't match
-        Folger Digital Text's file-naming scheme. 
+     <!-- 
+        Decide what XML file to open depending on the title acronym.
+        doc variable now only used to obtain proper title and list of acts/scenes.
     -->
-    <% doc = Nokogiri::XML(File.open("FolgerDigitalTexts_XML_Complete/MND.xml"))
-    if "#{request.fullpath}" == "/plays/a_midsummer_nights_dream"
-        doc = Nokogiri::XML(File.open("FolgerDigitalTexts_XML_Complete/MND.xml"))
-    elsif "#{request.fullpath}" == "/plays/alls_well_that_ends_well"
-        doc = Nokogiri::XML(File.open("FolgerDigitalTexts_XML_Complete/AWW.xml"))
-    elsif "#{request.fullpath}" == "/plays/antony_and_cleopatra"
-        doc = Nokogiri::XML(File.open("FolgerDigitalTexts_XML_Complete/Ant.xml"))
-    elsif "#{request.fullpath}" == "/plays/as_you_like_it"
-        doc = Nokogiri::XML(File.open("FolgerDigitalTexts_XML_Complete/AYL.xml"))
-    elsif "#{request.fullpath}" == "/plays/coriolanus"
-        doc = Nokogiri::XML(File.open("FolgerDigitalTexts_XML_Complete/Cor.xml"))
-    elsif "#{request.fullpath}" == "/plays/cymbeline"
-        doc = Nokogiri::XML(File.open("FolgerDigitalTexts_XML_Complete/Cym.xml"))
-    elsif "#{request.fullpath}" == "/plays/hamlet"
-        doc = Nokogiri::XML(File.open("FolgerDigitalTexts_XML_Complete/Ham.xml"))
-    elsif "#{request.fullpath}" == "/plays/henry_iv_part_1"
-        doc = Nokogiri::XML(File.open("FolgerDigitalTexts_XML_Complete/1H4.xml"))
-    elsif "#{request.fullpath}" == "/plays/henry_iv_part_2"
-        doc = Nokogiri::XML(File.open("FolgerDigitalTexts_XML_Complete/2H4.xml"))
-    elsif "#{request.fullpath}" == "/plays/henry_v"
-        doc = Nokogiri::XML(File.open("FolgerDigitalTexts_XML_Complete/H5.xml"))
-    elsif "#{request.fullpath}" == "/plays/henry_vi_part_1"
-        doc = Nokogiri::XML(File.open("FolgerDigitalTexts_XML_Complete/1H6.xml"))
-    elsif "#{request.fullpath}" == "/plays/henry_vi_part_2"
-        doc = Nokogiri::XML(File.open("FolgerDigitalTexts_XML_Complete/2H6.xml"))
-    elsif "#{request.fullpath}" == "/plays/henry_vi_part_3"
-        doc = Nokogiri::XML(File.open("FolgerDigitalTexts_XML_Complete/3H6.xml"))
-    elsif "#{request.fullpath}" == "/plays/henry_viii"
-        doc = Nokogiri::XML(File.open("FolgerDigitalTexts_XML_Complete/H8.xml"))
-    elsif "#{request.fullpath}" == "/plays/julius_caesar"
-        doc = Nokogiri::XML(File.open("FolgerDigitalTexts_XML_Complete/JC.xml"))
-    elsif "#{request.fullpath}" == "/plays/king_john"
-        doc = Nokogiri::XML(File.open("FolgerDigitalTexts_XML_Complete/Jn.xml"))
-    elsif "#{request.fullpath}" == "/plays/king_lear"
-        doc = Nokogiri::XML(File.open("FolgerDigitalTexts_XML_Complete/Lr.xml"))
-    elsif "#{request.fullpath}" == "/plays/loves_labors_lost"
-        doc = Nokogiri::XML(File.open("FolgerDigitalTexts_XML_Complete/LLL.xml"))
-    elsif "#{request.fullpath}" == "/plays/lucrece"
-        doc = Nokogiri::XML(File.open("FolgerDigitalTexts_XML_Complete/Luc.xml"))
-    elsif "#{request.fullpath}" == "/plays/macbeth"
-        doc = Nokogiri::XML(File.open("FolgerDigitalTexts_XML_Complete/Mac.xml"))
-    elsif "#{request.fullpath}" == "/plays/measure_for_measure"
-        doc = Nokogiri::XML(File.open("FolgerDigitalTexts_XML_Complete/MM.xml"))
-    elsif "#{request.fullpath}" == "/plays/much_ado_about_nothing"
-        doc = Nokogiri::XML(File.open("FolgerDigitalTexts_XML_Complete/Ado.xml"))
-    elsif "#{request.fullpath}" == "/plays/othello"
-        doc = Nokogiri::XML(File.open("FolgerDigitalTexts_XML_Complete/Oth.xml"))
-    elsif "#{request.fullpath}" == "/plays/pericles"
-        doc = Nokogiri::XML(File.open("FolgerDigitalTexts_XML_Complete/Per.xml"))
-    elsif "#{request.fullpath}" == "/plays/richard_ii"
-        doc = Nokogiri::XML(File.open("FolgerDigitalTexts_XML_Complete/R2.xml"))
-    elsif "#{request.fullpath}" == "/plays/richard_iii"
-        doc = Nokogiri::XML(File.open("FolgerDigitalTexts_XML_Complete/R3.xml"))
-    elsif "#{request.fullpath}" == "/plays/romeo_and_juliet"
-        doc = Nokogiri::XML(File.open("FolgerDigitalTexts_XML_Complete/Rom.xml"))
-    elsif "#{request.fullpath}" == "/plays/shakespeares_sonnets"
-        doc = Nokogiri::XML(File.open("FolgerDigitalTexts_XML_Complete/Son.xml"))
-    elsif "#{request.fullpath}" == "/plays/taming_of_the_shrew"
-        doc = Nokogiri::XML(File.open("FolgerDigitalTexts_XML_Complete/Shr.xml"))
-    elsif "#{request.fullpath}" == "/plays/the_comedy_of_errors"
-        doc = Nokogiri::XML(File.open("FolgerDigitalTexts_XML_Complete/Err.xml"))
-    elsif "#{request.fullpath}" == "/plays/the_merchant_of_venice"
-        doc = Nokogiri::XML(File.open("FolgerDigitalTexts_XML_Complete/MV.xml"))
-    elsif "#{request.fullpath}" == "/plays/the_merry_wives_of_windsor"
-        doc = Nokogiri::XML(File.open("FolgerDigitalTexts_XML_Complete/Wiv.xml"))
-    elsif "#{request.fullpath}" == "/plays/the_phoenix_and_turtle"
-        doc = Nokogiri::XML(File.open("FolgerDigitalTexts_XML_Complete/PhT.xml"))
-    elsif "#{request.fullpath}" == "/plays/the_tempest"
-        doc = Nokogiri::XML(File.open("FolgerDigitalTexts_XML_Complete/Tmp.xml"))
-    elsif "#{request.fullpath}" == "/plays/the_two_gentlemen_of_verona"
-        doc = Nokogiri::XML(File.open("FolgerDigitalTexts_XML_Complete/TGV.xml"))
-    elsif "#{request.fullpath}" == "/plays/the_two_noble_kinsmen"
-        doc = Nokogiri::XML(File.open("FolgerDigitalTexts_XML_Complete/TNK.xml"))
-    elsif "#{request.fullpath}" == "/plays/the_winters_tale"
-        doc = Nokogiri::XML(File.open("FolgerDigitalTexts_XML_Complete/WT.xml"))
-    elsif "#{request.fullpath}" == "/plays/timon_of_athens"
-        doc = Nokogiri::XML(File.open("FolgerDigitalTexts_XML_Complete/Tim.xml"))
-    elsif "#{request.fullpath}" == "/plays/titus_andronicus"
-        doc = Nokogiri::XML(File.open("FolgerDigitalTexts_XML_Complete/Tit.xml"))
-    elsif "#{request.fullpath}" == "/plays/troilus_and_cressida"
-        doc = Nokogiri::XML(File.open("FolgerDigitalTexts_XML_Complete/Tro.xml"))
-    elsif "#{request.fullpath}" == "/plays/twelfth_night"
-        doc = Nokogiri::XML(File.open("FolgerDigitalTexts_XML_Complete/TN.xml"))
-    elsif "#{request.fullpath}" == "/plays/venus_and_adonis"
-        doc = Nokogiri::XML(File.open("FolgerDigitalTexts_XML_Complete/Ven.xml"))
-    end %>
+    <% doc = Nokogiri::XML(File.open("FolgerDigitalTexts_XML_Complete/"+@acronym+".xml")) %>
 
-
-    <!-- 
-        Get title of play and display at top of page 
-    -->
+    <% 
+        # Get title of play and display at top of page 
+    %>
     <div class="script-title">
         <div id="Home-button">
-            <a id="home" href="/">Home</a>
+            <a id="home" href="/">
+                Home
+            </a>
         </div>
         <div id="play-title">
-            <p id="title"></p>
+            <p id="title"/>
         </div>
         <% title = doc.css('title').first %>
         <script>
@@ -112,26 +27,200 @@
     </div>
 
 
-    <!-- 
-        Parse the XML file for number of acts & scenes in order to 
-        create the navigation bar 
-    -->
+    <% 
+        #Parse the XML file for number of acts & scenes in order to 
+        #create the navigation bar 
+    %>
     <div class="script-side-bar">
         <div class="play-navigation">
 
             <!-- This button shows the play's synopsis -->
-            <button class="nav-synopsis" id="synopsis-button">SYNOPSIS</button>
+            <button class="nav-synopsis" id="synopsis-button">
+                SYNOPSIS
+            </button>
 
             <!-- This button shows the play's analytics -->
-            <button class="nav-analytics" id="analytics-button">ANALYTICS</button>
+            <button class="nav-analytics" id="analytics-button">
+                ANALYTICS
+            </button>
 
-            <!-- Create a button for each act and scene in the play -->
+            <!-- This button toggles the strikethrough edits' visibility -->
+            <button class = "nav-synopsis" curState = "showing" id="viewToggle-button">
+                HIDE EDITS
+            </button>
+
+            <button class ="nav-analytics" id="clearall-button"> CLEAR EDITS </button>
+
+            <!-- This button allows the user to save their edits -->
+            <button class = "nav-synopsis" id="save-button"> SAVE </button>
+
+
+            <!--
+                This script tag creates a button which will hide the edits made by the use to create
+                a concise and readable version of the script. 
+            -->
+            <script>
+                var toggleBtn = document.getElementById("viewToggle-button");
+                toggleBtn.curState = "showing";
+                toggleBtn.onclick = function() {
+                    toggleScript()
+                    formatPage()
+                    formatBreaks()
+                    adjustLines()
+                    buttonChange()
+                }
+                //toggleScript determines which elements of the scipt are cut and whether or not we wish to display those elements 
+                function toggleScript() { 
+                    var words = Array.from(document.getElementsByClassName("word"));
+                    var punctuation = Array.from(document.getElementsByClassName("punc"));
+                    var directions = Array.from(document.getElementsByClassName("stage"));
+                    var speakers = Array.from(document.getElementsByClassName("speaker"))
+                    var cuttableScript = words.concat(punctuation).concat(directions).concat(speakers);
+                    cuttableScript.forEach(function(word) {
+                        if (toggleBtn.curState == "showing" ) // User wishes to hide edit
+                        {
+                            word.disabled = 'true'
+                            if (word.dataset.cut == "true")
+                            { 
+                            word.style.display = 'none'
+                            }
+                        }
+                        else //User wishes to show edits
+                        {
+                            word.style.display = 'initial'
+                            word.removeAttribute('disabled')
+                        }
+                    })
+                }
+
+                //formatPage handles adjusting the look of the script when switching between concise and full views
+                function formatPage(){
+                    script = document.querySelector(".script-main");
+                    var elements = script.querySelectorAll("[data-linenum]")
+                    var index = 0
+                    var newLineNum = 1
+                    while (index < elements.length)
+                    {
+                        var doCut = true
+                        var firstLineElm = index
+                        //Iterates through each line until a line break
+                        while(elements[index].className != "newLine")
+                        {
+                            ++index
+                            if (elements[index].dataset.cut == "false")
+                            {
+                                doCut = false // we don't want to cut the linebreak at the end of the line
+                            }
+                        }
+                        //Decides what to do once you're at a lineBreak
+                        if (doCut && toggleBtn.curState == "showing") //User wishes to hide edits 
+                        {
+                            elements[index].style.display = 'none'
+                        }
+                        else
+                        {
+                            elements[index].style.display = 'initial'
+                            if (newLineNum % 5 == 0) //we only wish to display every 5 lines 
+                            {
+                                //Create a new line number to display 
+                                var newNode = document.createElement("p")
+                                newNode.className = 'lineNum'
+                                newNode.id = "newLineNum"
+                                var newContent = document.createTextNode(newLineNum.toString())
+                                newNode.appendChild(newContent)
+                                elements[index].parentNode.insertBefore(newNode , elements[firstLineElm])
+                            }
+                            ++newLineNum
+                        }
+                        if (index + 1 != elements.length && elements[index].parentNode != elements[index + 1].parentNode) //The elements are in different scenes or acts 
+                        {
+                            newLineNum = 1
+                        }
+                        ++index
+                    }
+                }                   
+
+                //formatBreaks handles adjusting the spacing around speakers and stage directions  when they're hidden 
+                function formatBreaks(){
+                    var elements = Array.from(document.getElementsByClassName("speaker")).concat(Array.from(document.getElementsByClassName("stage")))
+                    elements.forEach(function(element)
+                    {
+                        var curIndex = Array.from(element.parentNode.children).indexOf(element)
+                        var prevBreak = curIndex - 1
+                        var postBreak = curIndex + 1
+                        if (element.dataset.cut == "true" && toggleBtn.curState == "showing") //we wish to hide the Speakers
+                        {
+                            if (element.parentNode.children[prevBreak].nodeName == "BR") // Remove the line break above the hidden speaker
+                            {
+                                element.parentNode.children[prevBreak].style.display = 'none'
+                            }
+                            if (element.parentNode.children[postBreak].nodeName == "BR") // Remove the line break below the hidden speaker 
+                            {
+                                element.parentNode.children[postBreak].style.display = 'none'
+                            }
+                        }
+                        else
+                        {
+                            element.parentNode.children[prevBreak].style.display = 'initial'
+                            element.parentNode.children[postBreak].style.display = 'initial'
+                        }
+
+                    })
+
+                }
+                //adjustLines alters the line numbers dynamically as the user cuts lines out of the play 
+                function adjustLines() {
+                    var originalLineNums = Array.from(document.querySelectorAll("[id = 'originalLineNum']"))
+                    var newLineNums = Array.from(document.querySelectorAll("[id = 'newLineNum']"))
+                    originalLineNums.forEach(function(lineNumber)
+                    {
+                        if (toggleBtn.curState == "showing") //wish to hide edits
+                        {
+                            lineNumber.style.display = 'none'
+                        }
+                        else //wish to show edits 
+                        {
+                            lineNumber.style.display = 'initial'
+                        }
+                    })   
+                    newLineNums.forEach(function(lineNumber)
+                    {
+                        if (toggleBtn.curState == 'hiding') //wish to show edits
+                        {
+                            lineNumber.remove()
+                        }
+                    })                 
+                }              
+                   
+                //buttonChange handles the logic as to whether the button is used for showing or hiding edits 
+                function buttonChange() {
+                    if (toggleBtn.curState == "hiding")  //wish to show edits
+                    {
+                        toggleBtn.curState = "showing"
+                        toggleBtn.innerHTML = "HIDE EDITS"
+                    } 
+                    else if (toggleBtn.curState == "showing")    //wish to hide edits 
+                    {
+                        toggleBtn.curState = "hiding"
+                        toggleBtn.innerHTML = "SHOW EDITS"
+                    }
+                    else 
+                    {
+                        throw new Error('Something is fucked up with the toggle button curState')
+                    }
+                }
+             </script>
+             <div class = "break"> </div>
+
+            <% # Create a button for each act and scene in the play %>
             <% currAct = 1 %>
             <% currScene = 1 %>
             <% currIndex = 1 %>
             <% acts= doc.css('//div1') %>
             <% acts.each do |act| %>
-                <button class="nav-act" id="current-act"><%= "ACT " + currAct.to_s %></button>
+                <button class="nav-act" id="current-act">
+                    <%= "ACT " + currAct.to_s %>        
+                </button>
                 <script>
                     document.getElementById('current-act').id = '<%= escape_javascript "na" + currAct.to_s %>';
                 </script>
@@ -139,7 +228,9 @@
                 <% currScene = 1 %>
                 <% scenes = Nokogiri::XML(act.to_s).css('//div2') %>
                 <% scenes.each do |scene| %>
-                    <button class="nav-scene" id="current-scene"><%= "SCENE " + currScene.to_s %></button>
+                    <button class="nav-scene" id="current-scene">
+                        <%= "SCENE " + currScene.to_s %>
+                    </button>
                     <script>
                         document.getElementById('current-scene').id = '<%= escape_javascript "ns" + currIndex.to_s %>';
                     </script>
@@ -156,8 +247,12 @@
     -->  
     <div id="synopsis-modal" class="shown-modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
-            <div class="hidden-synopsis" id="hidden-synopsis"></div>
+            <span class="close">
+                &times;
+            </span>
+            <div class="hidden-synopsis" id="hidden-synopsis">
+                <!-- The empty div seems to be necessary for the script to show -->
+            </div>
             <% synopsistext = doc.css('//div[type="synopsis"]').text %>
             <script>
                 document.getElementById('hidden-synopsis').innerHTML = '<%= escape_javascript synopsistext %>';
@@ -171,241 +266,149 @@
     -->
     <div id="analytics-modal" class="shown-modal">
         <div class="modal-content">
-            <span class="close2">&times;</span>
-            <div class="hidden-analytics" id="hidden-analytics"></div>
-            <% analyticstext = "Total Lines: ????" %>
-            <script>
-                document.getElementById('hidden-analytics').innerHTML = '<%= escape_javascript analyticstext %>';
-            </script>
+            <span class="close2">
+                &times;
+            </span>
+            <div class="hidden-analytics" id="hidden-analytics">
+                <!-- The empty div seems to be necessary for the script to show -->
+            </div>
         </div>
     </div>
+
 
 
     <!-- 
-        Parse the XML file for the actual script, and display everything 
+        Retrieve the saved HTML and fill out script-main 
     -->
     <div class="script-main"> 
-        <% currAct = 1 %>
-        <% currScene = 1 %>
-        <% currIndex = 1 %>  
-
-        <% acts= doc.css('//div1') %>
-        <% acts.each do |act| %>
-            <% if Nokogiri::XML(act.to_s).css('head').first != nil %>
-            <div class="actDiv" id="Diva"><button class="acthead" id="current-act" data-cut="false" data-display="true"> <%= Nokogiri::XML(act.to_s).css('head').first.inner_text %></button><br></b>
-            <% end %>
-            <script>
-                document.getElementById('current-act').id = '<%= escape_javascript "a" + currAct.to_s %>';
-                document.getElementById('Diva').id = '<%= escape_javascript "Diva" + currAct.to_s%>';
-            </script>
-            <% currAct = currAct + 1 %>
-            <% scenes = Nokogiri::XML(act.to_s).css('//div2') %>
-            <% currScene = 1 %>
-            <% scenes.each do |scene| %>
-                <% if Nokogiri::XML(scene.to_s).css('head').first != nil %>
-                <div class="sceneDiv" id="Divs"><button class="scenehead" id="current-scene" data-cut="false" data-display="true"><%= Nokogiri::XML(scene.to_s).css('head').first.inner_text %></button><br>
-                <% end %>
-                <script>
-                    document.getElementById('current-scene').id = '<%= escape_javascript "s" + currIndex.to_s %>';
-                    document.getElementById('Divs').id = '<%= escape_javascript "Divs" + currIndex.to_s%>';
-                </script>
-                <% currScene = currScene + 1 %>
-                <% currIndex = currIndex + 1 %>
-
-                <% lines = Nokogiri::XML(scene.to_s).css('//sp') %>
-                <% stages = Nokogiri::XML(scene.to_s).css('stage').to_a %>
-
-                <% lines.each do |line| %>
-                <!-- DISPLAY STAGE DIRECTIONS -->
-                    <!-- Get line id -->
-                    <% lineN = line.attr("xml:id").to_s.gsub("sp-","").to_f %>
-
-                    <% stages.each do |stage| %>
-                        <!-- Get stage direction id -->
-                        <% stageN = stage.attr('xml:id').to_s.gsub("stg-","").to_f %>
-                        <!-- If there is a stage dir that comes before the line -->
-                        <% if (stageN < lineN) and (stageN >= lineN-1.0)%>
-                            <!-- display stage direction -->
-                            <br>
-                            <button class="stage" data-cut="false" data-display="true"> <%= stage.inner_text %> </button> <br>
-                            <% stages.delete(stage) %>
-                        <% end %>
-                    <% end %>
-
-                    <!-- Getting all the info needed for each line -->
-                    <% speaker = Nokogiri::XML(line.to_s).css('speaker') %>
-                    <% milestones = Nokogiri::XML(line.to_s).css('milestone') %>
-                    <% spwords = Nokogiri::XML(line.to_s).css('w','c','pc') %>
-
-                    <!-- DISPLAY SPEAKER -->
-                    <br><p class="speaker"><%=speaker.inner_text%> </p><br>
-
-                    <!-- DISPLAY LINES -->
-                    <% milestones.each do |ms| %>
-
-                        <% msN = ms.attr("xml:id").to_s.gsub("ftln-","").to_f %>
-                        <% stages.each do |stage| %>
-                            <!-- Get stage direction id -->
-                            <% stageN = stage.attr('xml:id').to_s.gsub("stg-","").to_f %>
-                            <!-- If there is a stage dir inside speech -->
-                            <% if (stageN <= msN) and (stageN >= msN-1.0) %>
-                            <!-- display stage direction -->
-                                <button class="stage" data-cut="false" data-display="true"> <%= stage.inner_text %> </button> <br>
-                                <% stages.delete(stage) %>
-                            <% end %>
-                        <% end %>
-
-                        <!-- get line number -->
-                        <% lineNum = ms.attr("n").to_s.split(".")[2] %>
-                        <!-- get corresps per milestone in array -->
-                        <% wordIDs = ms.attr("corresp").to_s.split(" ") %>
-                        <!-- remove #s -->
-                        <% wordIDs = wordIDs.map { |w| w.gsub("#","")} %>
-                        <!-- Search spwords for corresponding w/c/pc -->
-                        
-                        <!-- DISPLAY LINE NUMBER -->
-                        <p class="lineNum"><%= lineNum %></p>
-
-                        <% wordIDs.each do |id| %>
-                            <% spwords.each do |word| %>
-                                <% if word.attr('xml:id').to_s == id %>
-                                <!-- DISPLAY EACH WORD -->
-                                <% if (word.inner_text == ".") || (word.inner_text == ",") || (word.inner_text == "?") || (word.inner_text == "!") || (word.inner_text == ";") || (word.inner_text == ":") %>
-                                    <button class="punc" data-cut="false" data-display="true"><%= word.inner_text %></button>
-                                <% else %>
-                                    <% if word.inner_text != "" && word.inner_text != " " %>
-                                        <button class="word" data-cut="false" data-display="true"><%= word.inner_text %></button>
-                                    <% end %>
-                                <% end %>
-                            <% end %>
-                        <% end %>
-                    <% end %>
-
-                    <!-- BREAK FOR NEW LINE -->
-                    <br>
-
-
-                    <% stages.each do |stage| %>
-                        <!-- Get stage direction id -->
-                        <% stageN = stage.attr('xml:id').to_s.gsub("stg-","").to_f %>
-                        <!-- If there is a stage dir inside speech -->
-                        <% if (stageN >= msN) and (stageN < msN+1.0) %>
-                            <!-- display stage direction -->
-                            <button class="stage" data-cut="false" data-display="true"> <%= stage.inner_text %> </button> <br>
-                            <% stages.delete(stage) %>
-                        <% end %>
-                    <% end %>
-
-                <% end %>
-                <% end %>
-                
-                <br>
-                <% stages.each do |stage| %>
-                    <button class="stage" data-cut="false" data-display="true"><%= stage.inner_text %></button> <br>
-                    <% stages.delete(stage) %>
-                <% end %>
-            <% end%>
-            </div>
-            <br>
-        <%end%>
-        </div>
+        <%= content_tag :div, class: "edited-script", data: {provideddocument: @provideddocument} do %>
+        <% end %>
+        <script>
+            document.getElementsByClassName('script-main')[0].innerHTML = $('.edited-script').data('provideddocument')
+        </script>
     </div>
 
     <script>
-        document.querySelector(".script-main").addEventListener("click", doCut, false);
-        // all words will need to be printed within the div class "script-main"
-        function doCut(e) {
-            var clickedItem = e.target;
-            // act
-            if (clickedItem.getAttribute("class") == "acthead") {
-            //    if (clickedItem.tagName.toLowerCase() == "button") {
-            //
-            //        // Don't cut Acts
-            //        var entireAct = document.getElementById("Div" + clickedItem.id);
-            //        var allChildren = entireAct.getElementsByTagName("button");
-            //        if (clickedItem.dataset.cut.toLowerCase() == "false") {
-            //            for (var i = 0; i < allChildren.length; i++) {
-            //                allChildren[i].style.color = "#D3D3D3";
-            //                allChildren[i].style.textDecoration = "line-through";
-            //                allChildren[i].dataset.cut = "true";
-            //            }
-            //            //clickedItem.style.color = "#D3D3D3";
-            //            //clickedItem.style.textDecoration = "line-through";
-            //            clickedItem.dataset.cut = "true";
-            //        }
-            //        // perform uncut
-            //        else {
-            //            for (var i = 0; i < allChildren.length; i++) {
-            //                allChildren[i].style.color = "#000000";
-            //                allChildren[i].style.textDecoration = "none";
-            //                allChildren[i].dataset.cut = "false";
-            //            }
-            //            // clickedItem.style.color = "#000000";
-            //            // clickedItem.style.textDecoration = "none";
-            //            clickedItem.dataset.cut = "false";
-            //        }
-            //    }    
+
+        //create the event listeners for a user highlighting over text to be cut
+        document.querySelector(".script-main").addEventListener("mousedown", mouseDown, false);
+        document.querySelector(".script-main").addEventListener("mouseover", mouseOver, false);
+        document.querySelector(".script-main").addEventListener("mouseup", mouseUp, false);
+
+
+        down = false //represents if the mouse is down
+        toCut = false //represents whether the text is to be cut or not
+        parent = null //represents the parent node of the cut items
+        speakerCut = true //version of toCut for cutting whole speeches when a character name is clicked
+
+
+        //function which takes in the clicked element and if it is a cuttable item, records the parent element 
+        //as well as the index of it's position as a child element
+        function mouseDown({ srcElement }) {
+            if (srcElement.className == "word" || srcElement.className == "punc" ||
+                srcElement.className == "stage") {
+                    parent = srcElement.parentNode
+                    startIndex = lowIndex = highIndex = Array.from(parent.children)
+                                                             .indexOf(srcElement)
+                    down = true
+                    toCut = !(srcElement.dataset.cut.to_b)//this line currently doesn't do anything bc to_b doesnt work
             }
-            // scene
-            else if (clickedItem.getAttribute("class") == "scenehead") {
-            //    if (clickedItem.tagName.toLowerCase() == "button") {
-            //        // perform cut
-            //        var entireScene = document.getElementById("Div" + clickedItem.id);
-            //        var allChildren = entireScene.getElementsByTagName("button");
-            //        if (clickedItem.dataset.cut.toLowerCase() == "false") {
-            //            for (var i = 0; i < allChildren.length; i++) {
-            //                allChildren[i].style.color = "#D3D3D3";
-            //                allChildren[i].style.textDecoration = "line-through";
-            //                allChildren[i].dataset.cut = "true";
-            //            }
-            //            //clickedItem.style.color = "#D3D3D3";
-            //            //clickedItem.style.textDecoration = "line-through";
-            //            clickedItem.dataset.cut = "true";
-            //        }
-            //        // perform uncut
-            //        else {
-            //            for (var i = 0; i < allChildren.length; i++) {
-            //                allChildren[i].style.color = "#000000";
-            //                allChildren[i].style.textDecoration = "none";
-            //                allChildren[i].dataset.cut = "false";
-            //            }
-            //            //clickedItem.style.color = "#000000";
-            //            //clickedItem.style.textDecoration = "none";
-            //            clickedItem.dataset.cut = "false";
-            //        }
-            //    }    
+            else if (srcElement.className == "speaker") {
+                parent = srcElement.parentNode
+                lowIndex = Array.from(parent.children).indexOf(srcElement)
+                highIndex = nextSpeaker(srcElement, lowIndex + 2) //when cutting a whole speech, need the index of the
+                //next speech rather than the location of the mouseup
+                if (srcElement.dataset.cut == "true") {
+                    toCut = false
+                }
+                else {
+                    toCut = true
+                }
+                speakerCut = true
             }
-            // stage
-            else if (clickedItem.getAttribute("class") == "stage") {
-                if (clickedItem.tagName.toLowerCase() == "button") {
-                    if (clickedItem.dataset.cut.toLowerCase() == "false") {
-                        clickedItem.style.color = "#D3D3D3";
-                        clickedItem.style.textDecoration = "line-through";
-                        clickedItem.dataset.cut = "true";
+        }
+
+        //function to keep track of what has been highlighted to cut
+        function mouseOver({ srcElement }) {
+            if (down) {
+                // Clear previous highlighting
+                Array.from(parent.children).slice(lowIndex, highIndex + 1).forEach(
+                    function(element) {
+                        element.style.backgroundColor = "#D6E4F3"
                     }
-                    else {
-                        clickedItem.style.color = "#000000";
-                        clickedItem.style.textDecoration = "none";
-                        clickedItem.dataset.cut = "false";
+                )
+                // Update selection
+                if (srcElement.className == "word" || srcElement.className == "punc" ||
+                    srcElement.className.indexOf("stage") !== -1) {
+                        newIndex = Array.from(parent.children).indexOf(srcElement)
+                        lowIndex = newIndex > startIndex ? startIndex : newIndex
+                        highIndex = newIndex > startIndex ? newIndex : startIndex
+                }
+                // Highlight and decide on cutting or uncutting
+                toCut = false
+                Array.from(parent.children).slice(lowIndex, highIndex + 1).forEach(
+                    function(element) {
+                        if (element.className == "word" || element.className == "punc" ||
+                            element.className == "stage"){
+                                element.style.backgroundColor = "#7699c0";
+                                if (element.dataset.cut == "false") { //prioritize cutting over uncutting
+                                    toCut = true
+                                }
+                        }
                     }
-                }    
+                )
             }
-            // line
-            else if (clickedItem.getAttribute("class") == "word" || clickedItem.getAttribute("class") == "punc") {
-                if (clickedItem.tagName.toLowerCase() == "button") {
-                    if (clickedItem.dataset.cut.toLowerCase() == "false") {
-                        clickedItem.style.color = "#D3D3D3";
-                        clickedItem.style.textDecoration = "line-through";
-                        clickedItem.dataset.cut = "true";
+        }
+
+        //function to cut or uncut all the highlighted items
+        function mouseUp({ srcElement }) {
+            if (lowIndex == highIndex) {
+                srcElement.dataset.cut == "true" ? uncut(srcElement) : cut(srcElement)
+            } else {
+                Array.from(parent.children).slice(lowIndex, highIndex + 1).forEach(
+                    function(element){
+                        toCut ? cut(element) : uncut(element)
                     }
-                    else {
-                        clickedItem.style.color = "#000000";
-                        clickedItem.style.textDecoration = "none";
-                        clickedItem.dataset.cut = "false";
-                    }
-                }    
+                )
             }
-        };
+            newIndex = lowIndex = highIndex = startIndex = parent = null
+            down = toCut = false
+        }
+
+        //next 2 functions actually change the styling of the items
+        function cut(element) {
+            if (element.className == "word" || element.className == "punc" ||
+                element.className.indexOf("stage") !== -1 || (element.className == "speaker" && speakerCut == true)) {
+                    element.style.color = "#747474"
+                    element.style.textDecoration = "line-through"
+                    element.dataset.cut = "true"
+                    element.style.backgroundColor = '#D6E4F3'
+                    speakerCut = false
+            }
+        }
+        function uncut(element) {
+            if (element.className == "word" || element.className == "punc" ||
+                element.className.indexOf("stage") !== -1 || (element.className == "speaker" && speakerCut == true)) {
+                    element.style.color = "#000000"
+                    element.style.textDecoration = "none"
+                    element.dataset.cut = "false"
+                    element.style.backgroundColor = '#D6E4F3'
+                    speakerCut = false
+            }
+        }
+
+        //obtains the index of the next speech, act, or scene which ends the speech to be cut
+        function nextSpeaker(srcElement, startIndex) {
+            items = Array.from(srcElement.parentNode.children).splice(startIndex)
+            for (element of items) {
+                if (element.className == "speaker" || element.className == "stage" || element.className == "sceneDiv" || element.className == "actDiv") {
+                    return items.indexOf(element) + startIndex - 1 
+                }
+            }  
+            return items.length - 1 + startIndex //if we hit the very end of the play
+        }
+
+        
     </script>
 
 
@@ -424,16 +427,8 @@
             var allScenes = document.getElementsByClassName("scenehead");
             for (var i = 0; i < allScenes.length; i++) {
                 if (("n" + allScenes[i].id) == scene.target.id) {
-                    allScenes[i].style.backgroundColor = "yellow";
                     window.location.hash = allScenes[i].id;
                 }
-                else {
-                    allScenes[i].style.backgroundColor = "transparent";
-                }
-            }
-            var allActs = document.getElementsByClassName("acthead");
-            for (var i = 0; i < allActs.length; i++) {
-                allActs[i].style.backgroundColor = "transparent";
             }
         }
         /** 
@@ -449,16 +444,8 @@
             var allActs = document.getElementsByClassName("acthead");
             for (var i = 0; i < allActs.length; i++) {
                 if (("n" + allActs[i].id) == act.target.id) {
-                    allActs[i].style.backgroundColor = "yellow";
                     window.location.hash = allActs[i].id;
                 }
-                else {
-                    allActs[i].style.backgroundColor = "transparent";
-                }
-            }
-            var allScenes = document.getElementsByClassName("scenehead");
-            for (var i = 0; i < allScenes.length; i++) {
-                allScenes[i].style.backgroundColor = "transparent";
             }
         }
         /** 
@@ -473,6 +460,15 @@
         span.onclick = function() {
             modal.style.display = "none";
         }
+        // Modified from MDN for set unions
+        // This isn't used after optimization, but could be useful later
+        union = function(setA, setB) {
+            var union = new Set(setA);
+            for (var elem of setB) {
+                union.add(elem);
+            }
+            return union;
+        }
         /** 
          * This controls the analytics button in the navigation bar.
          */
@@ -481,6 +477,98 @@
         var span2 = document.getElementsByClassName("close2")[0];
         btn2.onclick = function() {
             modal2.style.display = "block";
+            script = document.querySelector(".script-main");
+            scenes = getScenes(script);
+            analytics = countAnalytics(scenes);
+            formatAnalytics(analytics);
+        }
+
+        formatAnalytics = function({lines, uncutLines, characterLines}) {
+            originalLines = lines.size
+            conciseLines = uncutLines.size
+            // setup
+            innerHTML = `<table><tr><th/><th>Original</th><th>Deleted</th><th>Concise</th></tr>`
+            // total lines
+            innerHTML += `<tr><td class="left-cell">Total Lines</td><td>${originalLines}</td><td>${originalLines - conciseLines}</td><td>${conciseLines}</td></tr>`
+            // character lines
+            for (character in characterLines) {
+                originalCharLines = characterLines[character].total.size
+                conciseCharLines = characterLines[character].uncut.size
+                
+                innerHTML += `<tr><td class="left-cell">${character}:</td><td>${originalCharLines}</td><td>${originalCharLines - conciseCharLines}</td><td>${conciseCharLines}</td></tr>`
+            }
+            innerHTML += `</table>`
+            document.getElementById('hidden-analytics').innerHTML = innerHTML;
+        }
+        getScenes = function (script) {
+            actsAndScenes = new Set(Array.from(script.getElementsByClassName('actDiv')));
+            scenes = new Set();
+            // begin searching
+            let searching = true;
+            while(searching) {
+                searching = false;
+                // Prevents researching
+                newSet = new Set(Array.from(actsAndScenes.values()));
+                actsAndScenes.forEach(
+                    function(actOrScene) {
+                        Array.from(actOrScene.children).forEach(
+                            function(child) {
+                                if (child.className == 'actDiv') {
+                                    // these ifs are for searching, not the sets
+                                    if (!actsAndScenes.has(child)) {
+                                        newSet.add(child)
+                                        searching = true
+                                    }
+                                }
+                                if (child.className == 'sceneDiv') {
+                                    // these ifs are for searching, not the sets
+                                    if (!scenes.has(child)) {
+                                        newSet.add(child)
+                                        scenes.add(child)
+                                        searching = true
+                                    }
+                                }
+                            }
+                        )
+                        // avoid researching
+                        newSet.delete(actOrScene)
+                    }
+                )
+                actsAndScenes = newSet
+            }
+            return scenes
+        }
+        countAnalytics = function (scenes) {
+            lines = new Set()
+            uncutLines = new Set()
+            characterLines = {}
+            curChar = null
+            lineOffset = lineNum = 0
+            scenes.forEach(
+                function(scene){
+                    lineOffset += lineNum
+                    Array.from(scene.children).forEach(
+                        function(child) {
+                            if (child.className == 'speaker') {
+                                curChar = child.innerText.trim()
+                            }
+                            if (child.dataset.linenum) {
+                                lineNum = parseInt(child.dataset.linenum)
+                                lines.add(lineOffset + lineNum)
+                                if (!(Object.keys(characterLines).includes(curChar))) {
+                                    characterLines[curChar] = { total: new Set(), uncut: new Set() }
+                                }
+                                characterLines[curChar].total.add(lineOffset + lineNum)
+                                if (child.dataset.cut == "false") {
+                                    uncutLines.add(lineOffset + lineNum)
+                                    characterLines[curChar].uncut.add(lineOffset + lineNum)
+                                }
+                            }
+                        }
+                    )
+                }
+            )
+            return { lines: lines, uncutLines: uncutLines, characterLines: characterLines }
         }
         span2.onclick = function() {
             modal2.style.display = "none";
@@ -496,7 +584,72 @@
             if (event.target == modal) {
                 modal.style.display = "none";
             }
-        } 
+        }  
     </script>
+
+        <!-- Form for saved HTML -->
+        <form action="/plays/save" method="post" id="saveForm">
+            <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+            <input type="hidden" name="savedocument" value=""> 
+            <input type="hidden" name="savetitle" value="">
+            <input type="submit" style="visibility:hidden;" name="saveButton" value="Save">    
+        </form>
+          
+    <!-- 
+        Save button functionality
+        Get the contents of script-main and assign the values of the hidden form above to contain it.
+        Simulate click on submit button to force the correct order of assignment and form submission.
+    -->  
+    <script>
+        var saveBtn = document.getElementById("save-button")
+        saveBtn.onclick = function() { 
+            var toggleBtn = document.getElementById("viewToggle-button")
+            if (toggleBtn.curState == "hiding"){
+                alert("You may not save in concise view! Please switch to 'SHOW EDITS' to save.")
+            } else {
+                var fullScript = document.body.getElementsByClassName('script-main')[0].innerHTML
+                var form = document.getElementById("saveForm")
+                url = window.location.href
+                playName = /^http:\/\/localhost:3000\/plays\/(\w*)(?:#[s,a][\d]+)?$/.exec(url)[1]
+                form.elements["savedocument"].value = fullScript
+                form.elements["savetitle"].value = playName
+                form.elements["saveButton"].click()
+            }
+        }
+
+    </script>
+
+    <!-- 
+        Clean button functionality
+        Uncuts all edits in the script after confirming with the user
+    -->  
+
+    <script>
+        var clearBtn = document.getElementById("clearall-button")
+        clearBtn.onclick = function() {
+            var result = confirm("Are you sure you want to delete all the edits you've made?");
+            if (result) { 
+
+                script = document.querySelector(".script-main");
+                numScenes = getScenes(script).size
+
+                for (i = 1; i <= numScenes; i++) {
+                    string = "s" + i.toString()
+                    src = document.getElementById(string)
+                    if (src != null) {
+                        parent = src.parentNode
+                        Array.from(parent.children).forEach(
+                            function(element){
+                                speakerCut = true
+                                uncut(element)
+                        }
+
+                    )}
+                }
+            }
+        }
+    </script>
+
+
 
 </body></html>
