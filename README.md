@@ -1,9 +1,9 @@
 # Shakespeare Script Editor
 ## Contents
 1. [Summary](#summary) 
-   * [Functionality] (#functionality)
-   * [Tips and Tricks] (#tips-and-tricks)
-   * [Use Case] (#use-case)
+   * [Functionality](#functionality)
+   * [Tips and Tricks](#tips-and-tricks)
+   * [Use Case](#use-case)
    * [Problem description](#problem-description)
    * [Stakeholders](#stakeholders)
 2. [Architecture](#architecture)
