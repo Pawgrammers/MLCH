@@ -1,6 +1,9 @@
 # Shakespeare Script Editor
 ## Contents
 1. [Summary](#summary) 
+   * [Functionality] (#functionality)
+   * [Tips and Tricks] (#tips-and-tricks)
+   * [Use Case] (#use-case)
    * [Problem description](#problem-description)
    * [Stakeholders](#stakeholders)
 2. [Architecture](#architecture)
@@ -9,9 +12,7 @@
    * [Minimum Viable Product](#minimum-viable-product)
    * [Architecture Model](#architecture-model)
 3. [Installation](#installation)
-4. [Functionality](#functionality)
-   * [Use Cases](#use-case)
-5. [Known Problems](#known-problems)
+4. [Known Problems](#known-problems)
 
 ## Summary 
 The Shakespeare Script Editor is a website made by team Pawgrammers for CS121: Software Development in the Fall 2017 semester progressing upon work done by team MLCH completed in the Spring 2017 semester. Our web app provides a simple and easy way for directors and actors to
@@ -56,6 +57,12 @@ The Analytics information provides the number of full lines that have been cut, 
 Saving is not automatic, and if you change something but do not press the save button, when you reopen the play or refresh the page, any changes will be lost. When you open a play, what will be shown is the last saved version.
 Clicking 'Clear Edits' does not autosave. If you want to save this change, you must click the save button after clicking clear edits.
 The toggle button takes about 5-10 seconds to work. Please DO NOT click it again while waiting. Simply count to 10 and you will see the change in view happen.
+
+### Use Case 
+Figure 3 below outlines the use case of each page of the site.
+
+![Use Case Diagram](https://user-images.githubusercontent.com/21372792/33819054-2f368abe-ddfd-11e7-8862-918c87ab6d21.png)
+
 
 ### Problem description
 Often when planning a play or preparing for a performance, directors and
@@ -177,12 +184,6 @@ Step 3: Starting the app after installation
 5. Open your internet browser and go to `localhost:3000`
 6. To end the application, press `control + c` in your terminal and close the terminal
 
-
-
-### Use Case 
-Figure 3 below outlines the use case of each page of the site.
-
-![Use Case Diagram](https://user-images.githubusercontent.com/21372792/33819054-2f368abe-ddfd-11e7-8862-918c87ab6d21.png)
 
 ## Known Problems 
 If you cut out an entire speech by highlighting, the speaker's name will not automatically be cut out, and vice versa.
